@@ -95,7 +95,28 @@ for readibility
   I wouldn't push to master though, because I plan to refactor next. It is nice to commit at this point in case
   you somehow get into a mess with refactoring - you can always go back to the working version.
 
+  There's not a lot to refactor here, but we can introduce another language feature, constants.
 
+## Constants
+  
+  Constants are defined like so
 
+  ```const englishHelloPrefix = "Hello, ```
+
+  We can now refactor our code
+
+  ==CODE==
+
+  After refactoring, re-reun your tests to make sure you haven't broken anything.
+
+  Constants should improve performance of your application as it saves you creating the "Hello, " string
+  instance every time Hello is called.
+
+  To be clear, the performance boost is incredibly negligible for this example! But it's worth thinking about
+  creating constants to capture the meaning of values and sometimes to aid performance.
+
+# Hellow, world... again
+
+  The next
 
 
