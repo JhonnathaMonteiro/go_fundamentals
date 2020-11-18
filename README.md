@@ -117,6 +117,124 @@ for readibility
 
 # Hellow, world... again
 
-  The next
+  The next requirement is when our function is called with a empty string it defaults to printing "Hello, World",
+  rather than "Hello, ".
+  
+  Start by writing a new failing test
+
+  ==CODE==
+
+  Here we are introducing another tool in our testing arsenal, subtests. Sometimes it is useful to group tests
+  around a "thing" and then have subsets describing different scenarios.
+
+  A benefict of this approach is you can set up shared code that can be used in other tests.
+
+  There is a repeated code when we check if the message is what we expect.
+
+  Refactoring is not just for production code!
+
+  It is important that your tests are clear specifications of what the code needs to do.
+
+  We can and should refactor our tests.
+
+  ==CODE==
+  
+  What have we done here ?
+
+  We've refactored our  assertion into a function. This reduces duplication and improves readability of our tests. In Go
+  You can declare functions inside another functions and assign them to variables. You can then call them, just like
+  normal funtions. We need to pass in t *testing.T so that we can tell the test code to fail when we need to.
+
+  t.Helper() is needed to tell the test suite that this method is a helper. By doing this when it fails the line
+  number reported will be in our function call rather than inside our test helper. This  will help other
+  developers track down problems easier. If you still don't understand, comment it out, make a test fail and observe the
+  output.
+
+  Now that we hve a well-written failing test, let's fix the code, using an if  Here we are introducing another tool in our testing arsenal, subtests. Sometimes it is useful to group tests
+  around a "thing" and then have subsets describing different scenarios.
+
+  A benefict of this approach is you can set up shared code that can be used in other tests.
+
+  There is a repeated code when we check if the message is what we expect.
+
+  Refactoring is not just for production code!
+
+  It is important that your tests are clear specifications of what the code needs to do.
+
+  We can and should refactor our tests.
+
+  ==CODE==
+  
+  What have we done here ?
+
+  We've refactored our  assertion into a function. This reduces duplication and improves readability of our tests. In Go
+  You can declare functions inside another functions and assign them to variables. You can then call them, just like
+  normal funtions. We need to pass in t *testing.T so that we can tell the test code to fail when we need to.
+
+  t.Helper() is needed to tell the test suite that this method is a helper. By doing this when it fails the line
+  number reported will be in our function call rather than inside our test helper. This  will help other
+  developers track down problems easier. If you still don't understand, comment it out, make a test fail and observe the
+  output.
+
+  Now that we hve a well-written failing test, let's fix the code, using an if.
+
+  ==CODE==
+
+  If we run our tests we should see it satisfies the new requeirement and we haven't accidentally broken the other 
+  functionality.
+
+# Back to source control
+
+  Now we are happy with the code I would amend the previous commit so we only check in the lovely version of
+  our code with its test.
+
+## Discipline
+
+  Let's go over the cycle again
+
+  - Write a test
+  - Make the complier pass
+  - Run the test, see that it fails and check the error message is meaningful
+  - Write enough code to make the test pass
+  - Refactor
+
+  On the face of it this may seens tedious but sticking to the feedback loop is important.
+
+  Not only does it ensure that you have relevant tests, it helps ensure you design good software by refactoring with 
+  the safety of tests.
+
+  Seeing the test fails is an important check because it also lets you see what error message looks like.
+  As a developer it can be very hard to work with a codebase when failing test do not give a clear idea as to
+  what the problem is.
+
+  By ensuring your tests are fast and setting up your tools so that running tests is simple you can get in to a state of
+  flow when writting your code.
+
+  By not writing tests you are commiting to manually checking your code by running your sofware which
+  breaks your state of flow and you won't be saving yourself any time, specially in the lon run.
+
+  
+# Keep going! More requirements
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
