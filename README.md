@@ -101,7 +101,7 @@ for readibility
   
   Constants are defined like so
 
-  ```const englishHelloPrefix = "Hello, ```
+  ```const englishHelloPrefix = "Hello" ```
 
   We can now refactor our code
 
@@ -216,6 +216,43 @@ for readibility
   
 # Keep going! More requirements
 
+  Goodness me, we have more requirements. We now need to support a second paramenter, specifying the language
+  of the greeting. If a languafe is passed in that we do not reconise, kust default to English.
+  
+  We should be confident that we can use TDD to flesh out this functionality easily!
+
+  Write a test for a user passing in Spanish. Add it to the existing suite.
+
+  ==CODE==
+  
+  Remember not to cheat! Test first. When you try and run the test, the compiler should complains because
+  you are calling Hello with two arguments rather than one.
+
+  ==CODE==
+
+  Fix the compilation problems by adding another string arguments to Hello
+
+  ==CODE==
+
+  When you try and run the test again it will complain about not passing through enough arguments to
+  Hello in your other tests and in hello.go
+
+  ==CODE==
+
+  Fix them by passing thtough empty strings. Now all your tests should compile and pass, apart from our
+  scenario
+
+  ==CODE==
+
+  We can use if here to check the language is equal to "Spanish" and if so change the message
+
+  ==CODE==
+
+  The test should now pass.
+
+  Now it is time to refactor. You should see some problems in the code, "magic" strings, some of which are
+  repeated. Try and refactor it yourself with every change make sure you re-run the tests to make sure your 
+  refactoring isn't breaking anything
 
 
 
