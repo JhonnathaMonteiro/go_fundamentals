@@ -346,17 +346,114 @@ Examples are compiled (and optionally executed) as part of a package's test suit
 As with typical tests, examples are functions that the reside in a package's _test.go files. Add the
 following ExampleAdd function to the adder_test.go file.
 
+====================
 
+# Arrays and slices
 
+Arrays allow you to store multiple elements of the same type in a variable in a particular order.
 
+When you have an array, it is very common to have to iterate over them. So let's use our new-found
+knlodge of for to make Sum function. Sum will take an array of numbers and return the total.
 
+Let's use our TDD skills
 
+## Write the test first
 
+In sum_test.go
 
+==CODE==
 
+Arrays have a fixed capacity which you define when you declare the variable. We can initialize an array in two ways:
 
+[N]type{value1, value2, ..., valueN} e.g. numbers:= [5]int{1, 2, 3, 4, 5}
+[...]type{value1, value2, ..., valueN} e.g. numbers:= [...]int{1, 2, 3, 4, 5}
 
+It is sometimes useful to also print the inputs to the function in the error message and we are using the %v
+placeholder wwhich is the default format, which works well for arrays.
 
+## Try to run the test
+
+By running go test the compiler will fail with `./sum_test.go:10:15: undefined: Sum`
+
+## Write the minimal amount of code for the test to run and check the failing test output
+
+In sum.go
+
+```
+package main
+
+func Sum(numbers [5]int) int {
+  return 0
+}
+```
+
+Your test should now fail with a clear error message
+
+```sum_test.go:13: got 0 want 15 given, [1 2 3 4 5]```
+
+## Write enough code to make it pass
+
+==CODE==
+
+To get the value out of an array to a particular index, just use `array[index]` syntax. In this case,
+we are using `for` to iterate 5 times to work through the array and add each item onto `sum`.
+
+## Refactor
+
+Let's introduce range to help clean up our code
+
+==CODE==
+
+`range` lets you iterate over an array. Every time it is called it returns two values, the index and the
+value, We are choosing to ignore the index value by using _ blank identifier.
+
+## Arrays and their type
+
+An interesting property of arrays is that the size is encoded in its type. If you try to pass an [4]int
+into a function that expects [5]int, it won't compile. They are different types so it's just the same
+as trying to pass a string into a function that want an int.
+
+You may be thinking it's quite cumbersome that arrays have a fixed lenght, and most of the time you
+probaly won't be using them!
+
+Go has slices which do not encode the size of the collection and instead can have any size.
+
+The next requirement will be to sum collections of varying sizes.
+
+## Write the test first
+
+We will now use the slice type which allow us tho have collections of any size. The syntax is very
+similar to arrays, you just omit the size when declaring them
+
+```mySlice : []int{1,2,3}``` rather than ```myArray := [3]int{1,2,3}```
+
+Write the test first 
+
+==CODE==
+
+## Try and run the test
+
+This does not compile
+
+==CODE==
+
+## Write the minimal amount of code for the test to run and check the failing test output
+
+The problem here is we can either
+
+- Break the existing API by changing the argument to Sum to be a slice rather than an array. When we
+do this we will know we have potentially ruined someone's day because our other test will not compile!
+- Create a new function
+
+In our case, no-one else is using our function so rather than having two functions let's
+just have one.
+
+======
+
+# Write enought code to make it pass
+
+What we need to do is iterate over the varargs, calculate the sum using our Sum function from before and then add
+it to the slice we will return
 
 
 
